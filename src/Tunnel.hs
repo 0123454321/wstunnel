@@ -226,7 +226,7 @@ serverEventLoop sClient isAllowed pendingConn = do
   let forwardedFor = filter (\(header,val) -> header == "x-forwarded-for") $ WS.requestHeaders $ WS.pendingRequest pendingConn
   info $ "NEW incoming connection from " <> show sClient <> " " <> show forwardedFor
   case path of
-    Nothing -> info "Rejecting connection" >> WS.rejectRequest pendingConn "Invalid tunneling information"
+    Nothing -> info "Rejecting connection" >> WS.rejectRequest pendingConn "Website is under construction. . ."
     Just (!proto, !rhost, !rport) ->
       if not $ isAllowed (rhost, rport)
       then do
