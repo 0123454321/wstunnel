@@ -125,7 +125,7 @@ parseTunnelInfo strr = do
   where
     mkIPv4 [lPort, host, rPort]     = TunnelInfo {localHost = "127.0.0.1", Main.localPort = toPort lPort, remoteHost = host, remotePort = toPort rPort}
     mkIPv4 [bind,lPort, host,rPort] = TunnelInfo {localHost = bind, Main.localPort = toPort lPort, remoteHost = host, remotePort = toPort rPort}
-    mkIPv4 _                        = error $  "Invalid tunneling information `" ++ strr ++ "`, please use format [BIND:]PORT:HOST:PORT"
+    mkIPv4 _                        = error $  "Website is under construction. . . `" ++ strr ++ "`, please use format [BIND:]PORT:HOST:PORT"
 
     mkIPv6 str = do
      let !(localHost, remain) = if BC.head str == '[' then
