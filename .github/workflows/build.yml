@@ -1,6 +1,9 @@
 name: Build bot
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build-linux:
@@ -14,16 +17,15 @@ jobs:
         if: github.repository == 'vscwjm/wstunnel'
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
-          username: ${0123454321}
-          password: ${wjm123456..}
+          username: vscwjm
+          password: dckr_pat_AXrrm-wv35LK6HLtlsX5JrYaaYA
 
           #      - name: wstunnel-builder-cache
           #        id: docker_build_wstunnel-cache
           #        uses: docker/build-push-action@v2
-          #        with:
-          #          push: true
-          #          tags: ghcr.io/erebe/wstunnel:builder-cache
+                  with:
+                    push: true
+                    tags: vscwjm/wstunnel:builder
           #          target: builder-cache
 
       - name: wstunnel
