@@ -11,11 +11,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
+        if: github.repository == 'erebe/wstunnel'
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ secrets.HOST_USERNAME }}
-          password: ${{ secrets.HOST_PASSWORD }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
 
           #      - name: wstunnel-builder-cache
           #        id: docker_build_wstunnel-cache
@@ -29,7 +30,7 @@ jobs:
         id: docker_build_wstunnel
         uses: docker/build-push-action@v2
         with:
-          push: true
+          push: ${{ github.repository == 'erebe/wstunnel' && github.ref == 'refs/heads/master' }}
           tags: ghcr.io/erebe/wstunnel:latest
        
           #      - name: extract Artifact
